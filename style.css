@@ -1,7 +1,39 @@
-body {
-    background-color: #191919;
+/* GLOBAL */
+* {
+    box-sizing: border-box;
 }
 
+body {
+    background-color: #191919;
+    margin: 0px;
+}
+
+.allCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* POKEMON MAIN CONTAINER */
 .pokemonCave {
     color: #fff;
+    background-color: red;
+    width: 350px;
+    height: 350px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.pokemonCave img {
+    width: 200px;
+    height: 200px;
+}
+
+.renderedPokemonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
