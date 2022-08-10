@@ -1,3 +1,5 @@
+let pokeCounter = 20;
+
 function init(){
     responseApi();
 }
@@ -22,14 +24,26 @@ async function renderPokemon(responseAsJson){
         console.log(responsePokemonSpecies);
         let renderContainer = document.getElementById('renderPokemonContainer');
         renderContainer.innerHTML += `
-            <div class="pokemonCave rounded allCenter">
-                <div>
+            <div class="pokemonCave rounded allCenter" style="background-color: ${responsePokemonSpecies['color']['name']};">
+                <div class="pokemonInfoContainer">
                     <h3>${element['name']}</h3>
-                    <div>${responsePokemonSpecies['genera']['7']['genus']}</div>
-                    <div>${responsePokemonSpecies['habitat']['name']}</div>
+                    <span class="spanStyle mb-2">${responsePokemonSpecies['genera']['7']['genus']}</span>
+                    <span class="spanStyle">${responsePokemonSpecies['habitat']['name']}</span>
                 </div>
-                <img src="${responsePokemonData['sprites']['front_default']}" class="img-fluid" alt="">     
+                <img src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">     
             </div>
         `;
     }
+    if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
+        loadNextPokemons();
+    }
+}
+
+async function loadNextPokemons(){
+    let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
+    let response = await fetch(nextUrl);
+    let responseNextPokemonJson = await response.json();
+    console.log(responseNextPokemonJson);
+    pokeCounter = pokeCounter + 20;
+    renderPokemon(responseNextPokemonJson);
 }
