@@ -22,6 +22,7 @@ async function renderPokemon(responseAsJson){
         let pokemonSpecies = await fetch(responsePokemonData['species']['url'])
         let responsePokemonSpecies = await pokemonSpecies.json();
         // console.log(responsePokemonSpecies);
+        let pokeId = idFormater(responsePokemonSpecies['id']);
         let renderContainer = document.getElementById('renderPokemonContainer');
         renderContainer.innerHTML += `
             <div class="pokemonCave allCenter" style="background-color: ${responsePokemonSpecies['color']['name']};">
@@ -31,7 +32,7 @@ async function renderPokemon(responseAsJson){
                     <span class="spanStyle mb-2">${responsePokemonSpecies['habitat']['name']}</span>
                 </div>
                 <div>
-                    <div style="text-align: right; margin-right: 10px;">#${responsePokemonSpecies['id']}</div>
+                    <div style="text-align: right; margin-right: 10px;">${pokeId}</div>
                     <img src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">     
                 </div>
             </div>
@@ -40,6 +41,12 @@ async function renderPokemon(responseAsJson){
     if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
         loadNextPokemons();
     }
+}
+
+function idFormater(responseId){
+    if(responseId < 10){return ('#00' + responseId)};
+    if(responseId < 100){return ('#0' + responseId)};
+    if(responseId >= 100){return ('#' + responseId)};
 }
 
 async function loadNextPokemons(){
