@@ -19,16 +19,18 @@ body {
 /* POKEMON MAIN CONTAINER */
 .pokemonCave {
     color: #fff;
-    width: 350px;
-    height: 350px;
+    width: 360px;
+    height: 220px;
     margin-right: 20px;
     margin-bottom: 20px;
     cursor: pointer;
+    justify-content: space-between;
+    border-radius: 14px;
 }
 
 .pokemonCave img {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: auto;
 }
 
 .renderedPokemonContainer {

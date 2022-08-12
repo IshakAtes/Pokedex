@@ -21,16 +21,19 @@ async function renderPokemon(responseAsJson){
         // console.log(responsePokemonData);
         let pokemonSpecies = await fetch(responsePokemonData['species']['url'])
         let responsePokemonSpecies = await pokemonSpecies.json();
-        console.log(responsePokemonSpecies);
+        // console.log(responsePokemonSpecies);
         let renderContainer = document.getElementById('renderPokemonContainer');
         renderContainer.innerHTML += `
-            <div class="pokemonCave rounded allCenter" style="background-color: ${responsePokemonSpecies['color']['name']};">
+            <div class="pokemonCave allCenter" style="background-color: ${responsePokemonSpecies['color']['name']};">
                 <div class="pokemonInfoContainer">
                     <h3>${element['name']}</h3>
-                    <span class="spanStyle mb-2">${responsePokemonSpecies['genera']['7']['genus']}</span>
-                    <span class="spanStyle">${responsePokemonSpecies['habitat']['name']}</span>
+                    <span class="spanStyle mb-2">${responsePokemonData['types'][0]['type']['name']}</span>
+                    <span class="spanStyle mb-2">${responsePokemonSpecies['habitat']['name']}</span>
                 </div>
-                <img src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">     
+                <div>
+                    <div style="text-align: right; margin-right: 10px;">#${responsePokemonSpecies['id']}</div>
+                    <img src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">     
+                </div>
             </div>
         `;
     }
