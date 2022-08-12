@@ -40,10 +40,10 @@ function generatePokemonCardTemplateHTML(responsePokemonSpecies, element, respon
                 <span class="spanStyle mb-2 textShadow">${responsePokemonData['types'][0]['type']['name']}</span>
                 <span class="spanStyle mb-2 textShadow">${responsePokemonSpecies['habitat']['name']}</span>
             </div>
-            <div>
-                <div class="textShadow" style="text-align: right; margin-right: 10px;">${pokeId}</div>
+            <div class="pokemonImgContainer allCenter">
+                <div class="textShadow" style="text-align: right; margin-right: -75px; padding-bottom: 10px; opacity: 0.9; font-size: 18px;">${pokeId}</div>
                 <img class="pokemonsImg" src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
-                <img class="pokeballImg" src="img/catching_pokemon_white_24dp.svg" alt="">     
+                <img class="pokeballImg" src="img/catching_pokemon_black_24dp.svg" alt="">     
             </div>
         </div>
     `;
@@ -55,10 +55,10 @@ function idFormater(responseId){
     if(responseId >= 100){return ('#' + responseId)};
 }
 
-async function loadNextPokemons(){
-    let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
-    let response = await fetch(nextUrl);
-    let responseNextPokemonJson = await response.json();
-    pokeCounter = pokeCounter + 20;
-    renderPokemon(responseNextPokemonJson);
-}
+// async function loadNextPokemons(){
+//     let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
+//     let response = await fetch(nextUrl);
+//     let responseNextPokemonJson = await response.json();
+//     pokeCounter = pokeCounter + 20;
+//     renderPokemon(responseNextPokemonJson);
+// }

@@ -39,12 +39,28 @@ body {
     overflow: hidden;
 }
 
+.pokemonImgContainer {
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
+}
+
+.pokeballImg {
+    width: 400px;
+    height: auto;
+    opacity: 0.3;
+    position: absolute;
+    right: -160px;
+    top: -10px;
+    z-index: 2;
+}
+
 .pokemonsImg {
     width: 160px;
     height: auto;
+    position: relative;
+    z-index: 3;
 }
-
-.pokeballImg {}
 
 .renderedPokemonContainer {
     display: flex;
