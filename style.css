@@ -14,9 +14,19 @@ body {
     align-items: center;
 }
 
+.textShadow {
+    text-shadow: 2px 2px 8px #000;
+}
 
 
 /* POKEMON MAIN CONTAINER */
+/* .mainContainer {
+    background-image: url("img//pokemon-gc071927e2_1920.jpg");
+    height: 100vh;
+    object-fit: cover;
+    background-position: center;
+} */
+
 .pokemonCave {
     color: #fff;
     width: 360px;
@@ -26,12 +36,15 @@ body {
     cursor: pointer;
     justify-content: space-between;
     border-radius: 14px;
+    overflow: hidden;
 }
 
-.pokemonCave img {
+.pokemonsImg {
     width: 160px;
     height: auto;
 }
+
+.pokeballImg {}
 
 .renderedPokemonContainer {
     display: flex;
