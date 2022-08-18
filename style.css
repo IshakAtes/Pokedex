@@ -18,6 +18,10 @@ body {
     text-shadow: 2px 2px 8px #000;
 }
 
+.cp {
+    cursor: pointer;
+}
+
 
 /* POKEMON MAIN CONTAINER */
 /* .mainContainer {
@@ -114,14 +118,17 @@ body {
 }
 
 #pokemonCardContainer {
-    height: 80vh;
-    background-color: rgb(197, 67, 67);
+    height: 100vh;
+    background-color: #191919;
     z-index: +1;
 }
 
 .cardStyle {
     width: 400px;
     height: auto;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding-top: 30px;
 }
 
 .containerCardHeader{
@@ -136,4 +143,14 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 0px 24px;
+}
+
+.card-header span{
+    color:rgb(255, 255, 255);
+}
+
+.card-header img{
+    width: 40px;
+    margin-right: 10px;
 }

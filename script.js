@@ -59,6 +59,8 @@ async function renderPokemonCard(pokeName){
     console.log(responsePokemonInfoAsJson);
     let pokemonSpecies = await fetch(responsePokemonInfoAsJson['species']['url'])
     let responsePokemonSpecies = await pokemonSpecies.json();
+    let pokeId = idFormater(responsePokemonInfoAsJson['id']);
+    console.log(responsePokemonSpecies)
 
     document.getElementById('overlay').style.display = 'unset';
     document.getElementById('renderPokemonCards').style.display = 'flex';
@@ -67,14 +69,23 @@ async function renderPokemonCard(pokeName){
     renderCard.innerHTML = `
     <div id="pokeCard" class="allCenter cardStyle" style="background-color: ${responsePokemonSpecies['color']['name']};">
         <div class="containerCardHeader">
-            <div class="card-header">
-                <span><img src="img/pfeilWhite.png" alt="">Pokedex</span>
-                <span>#Id</span>
+            <div class="card-header allCenter">
+                <span onclick="backToMain()" class="allCenter cp textShadow">
+                    <img src="img/pfeilWhite.png" alt="">
+                    <span style="font-size: 30px;">Pokedex</span>
+                </span>
+                <span class="textShadow" style="text-align: right; font-size: 20px;">${pokeId}</span>
             </div>
             <img src="${responsePokemonInfoAsJson['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
         </div>
     </div>
     `;
+}
+
+
+function backToMain(){
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('renderPokemonCards').style.display = 'none';
 }
 
 
