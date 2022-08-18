@@ -84,3 +84,43 @@ body {
     flex-direction: column;
     margin-left: 20px;
 }
+
+
+/* OVERLAY */
+#overlay{
+    display: none;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    background-color: #191919;
+    opacity: 0.5;
+    z-index: +1;
+}
+
+
+/* POKEMON CARDS */
+.renderPokemonCardStyle {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: +1;
+}
+
+#pokemonCardContainer {
+    height: 80vh;
+    background-color: rgb(197, 67, 67);
+    z-index: +1;
+}
+
+.cardStyle {
+    width: 400px;
+    height: auto;
+}
+
