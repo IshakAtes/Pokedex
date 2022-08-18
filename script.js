@@ -66,7 +66,13 @@ async function renderPokemonCard(pokeName){
     renderCard.innerHTML = '';
     renderCard.innerHTML = `
     <div id="pokeCard" class="allCenter cardStyle" style="background-color: ${responsePokemonSpecies['color']['name']};">
-        <img src="${responsePokemonInfoAsJson['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+        <div class="containerCardHeader">
+            <div class="card-header">
+                <span><img src="img/pfeilWhite.png" alt="">Pokedex</span>
+                <span>#Id</span>
+            </div>
+            <img src="${responsePokemonInfoAsJson['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+        </div>
     </div>
     `;
 }
