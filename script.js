@@ -154,6 +154,11 @@ function backToMain(){
 }
 
 
+function stopEvent(event){
+    event.stopPropagation();
+}
+
+
 function idFormater(responseId){
     if(responseId < 10){return ('#00' + responseId)};
     if(responseId < 100){return ('#0' + responseId)};
