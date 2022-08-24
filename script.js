@@ -129,37 +129,37 @@ function baseStats(hpData, atkData, defData, spAtkData, spDefData, speedData){
         <div class="allCenter statMargin">
             <span class="white statStyle">HP</span>
             <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${hpData}</div>
+                <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: ${hpData}%" aria-valuenow="${hpData}" aria-valuemin="0" aria-valuemax="100">${hpData}</div>
             </div>
         </div>
         <div class="allCenter statMargin">
         <span class="white statStyle">ATK</span>
             <div class="progress">
-                <div class="progress-bar bg-danger" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">${atkData}</div>
+                <div class="progress-bar bg-danger" role="progressbar" aria-label="Info example" style="width: ${atkData}%" aria-valuenow="${atkData}" aria-valuemin="0" aria-valuemax="100">${atkData}</div>
             </div>
         </div>
         <div class="allCenter statMargin">
         <span class="white statStyle">DEF</span>
             <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">${defData}</div>
+                <div class="progress-bar bg-info" role="progressbar" aria-label="Warning example" style="width: ${defData}%" aria-valuenow="${defData}" aria-valuemin="0" aria-valuemax="100">${defData}</div>
             </div>
         </div>
         <div class="allCenter statMargin">
         <span class="white statStyle">SP-ATK</span>
             <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">${spAtkData}</div>
+                <div class="progress-bar bg-warning" role="progressbar" aria-label="Danger example" style="width: ${spAtkData}%" aria-valuenow="${spAtkData}" aria-valuemin="0" aria-valuemax="100">${spAtkData}</div>
             </div>
         </div>
         <div class="allCenter statMargin">
         <span class="white statStyle">SP-DEF</span>
             <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">${spDefData}</div>
+                <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: ${spDefData}%" aria-valuenow="${spDefData}" aria-valuemin="0" aria-valuemax="100">${spDefData}</div>
             </div>
         </div>
         <div class="allCenter statMargin">
         <span class="white statStyle">SPEED</span>
             <div class="progress">
-                <div class="progress-bar bg-secondary" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">${speedData}</div>
+                <div class="progress-bar bg-secondary" role="progressbar" aria-label="Danger example" style="width: ${speedData}%" aria-valuenow="${speedData}" aria-valuemin="0" aria-valuemax="100">${speedData}</div>
             </div>
         </div>
     `;
