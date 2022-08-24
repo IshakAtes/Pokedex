@@ -107,7 +107,7 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">About</button>
-                    <button onclick="baseStats()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Base Stats</button>
+                    <button onclick="baseStats(${responsePokemonData['stats']['0']['base_stat']}, ${responsePokemonData['stats']['1']['base_stat']}, ${responsePokemonData['stats']['2']['base_stat']}, ${responsePokemonData['stats']['3']['base_stat']}, ${responsePokemonData['stats']['4']['base_stat']}, ${responsePokemonData['stats']['5']['base_stat']})" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Base Stats</button>
                     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Evolution</button>
                     <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false">Moves</button>
                 </div>
@@ -123,26 +123,44 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
 }
 
 
-function baseStats(){
+function baseStats(hpData, atkData, defData, spAtkData, spDefData, speedData){
     document.getElementById('nav-profile').innerHTML = '';
     document.getElementById('nav-profile').innerHTML = `
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">atk</div>
+        <div class="allCenter statMargin">
+            <span class="white statStyle">HP</span>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${hpData}</div>
+            </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar bg-info" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">def</div>
+        <div class="allCenter statMargin">
+        <span class="white statStyle">ATK</span>
+            <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">${atkData}</div>
+            </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="allCenter statMargin">
+        <span class="white statStyle">DEF</span>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">${defData}</div>
+            </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="allCenter statMargin">
+        <span class="white statStyle">SP-ATK</span>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">${spAtkData}</div>
+            </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="allCenter statMargin">
+        <span class="white statStyle">SP-DEF</span>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">${spDefData}</div>
+            </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="allCenter statMargin">
+        <span class="white statStyle">SPEED</span>
+            <div class="progress">
+                <div class="progress-bar bg-secondary" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">${speedData}</div>
+            </div>
         </div>
     `;
 }

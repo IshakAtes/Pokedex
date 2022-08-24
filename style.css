@@ -8,6 +8,10 @@ body {
     margin: 0px;
 }
 
+.white {
+    color: #fff;
+}
+
 .allCenter {
     display: flex;
     justify-content: center;
@@ -187,11 +191,23 @@ body {
 /* PROPERTIES */
 .progress {
     width: 100%;
-    margin-top: 10px;
     --bs-progress-height: 1.6rem;
 }
 
 .tab-content {
     width: 80%;
     margin-top: 20px;
+}
+
+.statStyle {
+    width: 30%;
+}
+
+.progress {
+    --bs-progress-border-radius: 3rem;
+    --bs-progress-height: 1.0rem;
+}
+
+.statMargin {
+    margin-top: 8px;
 }
