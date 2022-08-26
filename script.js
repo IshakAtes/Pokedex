@@ -60,7 +60,8 @@ async function renderPokemonCard(pokeName){
     let pokemonSpecies = await fetch(responsePokemonData['species']['url'])
     let responsePokemonSpecies = await pokemonSpecies.json();
     let pokeId = idFormater(responsePokemonData['id']);
-    console.log(responsePokemonSpecies)
+    console.log(responsePokemonSpecies);
+    console.log(responsePokemonSpecies['genera']['7']['genus']);
 
     document.getElementById('overlay').style.display = 'unset';
     document.getElementById('renderPokemonCards').style.display = 'flex';
@@ -106,18 +107,67 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
         <div class="pokeType">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">About</button>
+                    <button onclick="about(${responsePokemonSpecies['base_happiness']}, ${responsePokemonSpecies['capture_rate']}, ${responsePokemonSpecies['pal_park_encounters']['0']['base_score']}, '${responsePokemonSpecies['genera']['7']['genus']}', ${responsePokemonData['base_experience']})" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">About</button>
                     <button onclick="baseStats(${responsePokemonData['stats']['0']['base_stat']}, ${responsePokemonData['stats']['1']['base_stat']}, ${responsePokemonData['stats']['2']['base_stat']}, ${responsePokemonData['stats']['3']['base_stat']}, ${responsePokemonData['stats']['4']['base_stat']}, ${responsePokemonData['stats']['5']['base_stat']})" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Base Stats</button>
                     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Evolution</button>
                     <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false">Moves</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"></div>
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                    <div class="aboutStyling">
+                        <span style="color: rgba(241, 226, 203, 0.781);">Genus:</span>
+                        <span class="white">${responsePokemonSpecies['genera']['7']['genus']}</span>
+                    </div>
+                    <div class="aboutStyling">
+                        <span style="color: rgba(241, 226, 203, 0.781);">Base Exp:</span>
+                        <span class="white">${responsePokemonData['base_experience']}</span>
+                    </div>                
+                    <div class="aboutStyling">
+                        <span style="color: rgba(241, 226, 203, 0.781);">Base Score:</span>
+                        <span class="white">${responsePokemonSpecies['base_happiness']}</span>
+                    </div>
+                    <div class="aboutStyling">
+                        <span style="color: rgba(241, 226, 203, 0.781);">Happiness:</span>
+                        <span class="white">${responsePokemonSpecies['capture_rate']}</span>
+                    </div>
+                    <div class="aboutStyling">
+                        <span style="color: rgba(241, 226, 203, 0.781);">Capture:</span>
+                        <span class="white">${responsePokemonSpecies['pal_park_encounters']['0']['base_score']}</span>
+                    </div>
+                </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
                 <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0"></div>
             </div>
+        </div>
+        
+    `;
+}
+
+
+function about(happiness, capture, score, gen, exp){
+    document.getElementById('nav-home').innerHTML = '';
+    document.getElementById('nav-home').innerHTML = `
+        <div class="aboutStyling">
+            <span style="color: rgba(241, 226, 203, 0.781);">Genus:</span>
+            <span class="white">${gen}</span>
+        </div>
+        <div class="aboutStyling">
+            <span style="color: rgba(241, 226, 203, 0.781);">Base Exp:</span>
+            <span class="white">${exp}</span>
+        </div>
+        <div class="aboutStyling">
+            <span style="color: rgba(241, 226, 203, 0.781);">Base Score:</span>
+            <span class="white">${score}</span>
+        </div>
+        <div class="aboutStyling">
+            <span style="color: rgba(241, 226, 203, 0.781);">Happiness:</span>
+            <span class="white">${happiness}</span>
+        </div>
+        <div class="aboutStyling">
+            <span style="color: rgba(241, 226, 203, 0.781);">Capture:</span>
+            <span class="white">${capture}</span>
         </div>
     `;
 }
