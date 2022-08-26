@@ -109,7 +109,7 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
                     <button onclick="about(${responsePokemonSpecies['base_happiness']}, ${responsePokemonSpecies['capture_rate']}, ${responsePokemonSpecies['pal_park_encounters']['0']['base_score']}, '${responsePokemonSpecies['genera']['7']['genus']}', ${responsePokemonData['base_experience']})" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">About</button>
                     <button onclick="baseStats(${responsePokemonData['stats']['0']['base_stat']}, ${responsePokemonData['stats']['1']['base_stat']}, ${responsePokemonData['stats']['2']['base_stat']}, ${responsePokemonData['stats']['3']['base_stat']}, ${responsePokemonData['stats']['4']['base_stat']}, ${responsePokemonData['stats']['5']['base_stat']})" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Base Stats</button>
                     <button onclick="evolution('${responsePokemonSpecies['evolution_chain']['url']}')" class="nav-link" id="nav-evolution-tab" data-bs-toggle="tab" data-bs-target="#nav-evolution" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Evolution</button>
-                    <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false">Moves</button>
+                    <button onclick="moves('${responsePokemonData['moves']}')" class="nav-link" id="nav-moves-tab" data-bs-toggle="tab" data-bs-target="#nav-moves" type="button" role="tab" aria-controls="nav-moves" aria-selected="false">Moves</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -137,7 +137,7 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
                 <div class="tab-pane fade" id="nav-evolution" role="tabpanel" aria-labelledby="nav-evolution-tab" tabindex="0"></div>
-                <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0"></div>
+                <div class="tab-pane fade" id="nav-moves" role="tabpanel" aria-labelledby="nav-moves-tab" tabindex="0"></div>
             </div>
         </div>
         
@@ -145,41 +145,12 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
 }
 
 
-async function evolution(chainUrl){
-    
-    let responseEvolution = await fetch(chainUrl);
-    let responsePokemonChain = await responseEvolution.json();
-    // catch the json from third Pokemon
-    let lastChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}`;
-    let evo = await fetch(lastChainUrl);
-    let lastEvoFromPokemon = await evo.json();
-    // catch the json from First Pokemon
-    let pokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['species']['name']}`;
-    let firstPokemonFetch = await fetch(pokemonChainUrl)
-    let resultFirstPokemon = await firstPokemonFetch.json();
-    // catch the json from second Pokemon
-    let secondpokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}`;
-    let secondPokemonFetch = await fetch(secondpokemonChainUrl)
-    let resultSecondPokemon = await secondPokemonFetch.json();
-
-    // console.log(evoFromPokemon);
-    console.log(lastEvoFromPokemon);
-    console.log(responsePokemonChain);
-    document.getElementById('nav-evolution').innerHTML = '';
-    document.getElementById('nav-evolution').innerHTML = `
-        <div class="evoStyle">
-            <span class="white">${responsePokemonChain['chain']['species']['name']}</span>
-            <img style="width: 100px; height: auto;" src="${resultFirstPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
-        </div>
-        <div class="evoStyle">
-            <span class="white">${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}</span>
-            <img style="width: 100px; height: auto;" src="${resultSecondPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
-        </div>
-        <div class="evoStyle">
-            <span class="white">${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}</span>
-            <img style="width: 100px; height: auto;" src="${lastEvoFromPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
-        </div>
-    `;
+function moves(moves){
+    console.log(moves)
+    document.getElementById('nav-home').innerHTML = '';
+    for (let i = 0; i < moves.length; i++) {
+        document.getElementById('nav-home').innerHTML += `<span class="white">'${moves[i]['move']['name']}'</span>`;
+    }
 }
 
 
@@ -248,6 +219,40 @@ function baseStats(hpData, atkData, defData, spAtkData, spDefData, speedData){
             <div class="progress">
                 <div class="progress-bar bg-secondary" role="progressbar" aria-label="Danger example" style="width: ${speedData}%" aria-valuenow="${speedData}" aria-valuemin="0" aria-valuemax="100">${speedData}</div>
             </div>
+        </div>
+    `;
+}
+
+
+async function evolution(chainUrl){
+    let responseEvolution = await fetch(chainUrl);
+    let responsePokemonChain = await responseEvolution.json();
+    // catch the json from third Pokemon
+    let lastChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}`;
+    let evo = await fetch(lastChainUrl);
+    let lastEvoFromPokemon = await evo.json();
+    // catch the json from First Pokemon
+    let pokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['species']['name']}`;
+    let firstPokemonFetch = await fetch(pokemonChainUrl)
+    let resultFirstPokemon = await firstPokemonFetch.json();
+    // catch the json from second Pokemon
+    let secondpokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}`;
+    let secondPokemonFetch = await fetch(secondpokemonChainUrl)
+    let resultSecondPokemon = await secondPokemonFetch.json();
+
+    document.getElementById('nav-evolution').innerHTML = '';
+    document.getElementById('nav-evolution').innerHTML = `
+        <div class="evoStyle cp" onclick="renderPokemonCard('${responsePokemonChain['chain']['species']['name']}')">
+            <span class="white evotext">${responsePokemonChain['chain']['species']['name']}</span>
+            <img style="width: 100px; height: auto;" src="${resultFirstPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+        </div>
+        <div class="evoStyle cp" onclick="renderPokemonCard('${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}')">
+            <span class="white evotext">${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}</span>
+            <img style="width: 100px; height: auto;" src="${resultSecondPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+        </div>
+        <div class="evoStyle cp" onclick="renderPokemonCard('${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}')">
+            <span class="white evotext">${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}</span>
+            <img style="width: 100px; height: auto;" src="${lastEvoFromPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
         </div>
     `;
 }

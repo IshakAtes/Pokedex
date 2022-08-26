@@ -189,6 +189,18 @@ body {
 
 
 /* PROPERTIES */
+.nav-link {
+    color: #fff;
+}
+
+.nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: var(--bs-link-color);
+    --bs-nav-link-hover-color: rgba(255, 235, 205, 0.493);
+    --bs-nav-link-disabled-color: #6c757d;
+}
 
 /* ABOUT */
 .aboutStyling {
@@ -230,6 +242,12 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+.evoStyle:hover {
+    /* background-color: rgba(255, 235, 205, 0.493); */
+    /* box-shadow: 1px 3px 15px 10px rgba(115,108,100,0.65); */
+    border-bottom: 1px solid #fff;
 }
 
 #nav-evolution {
