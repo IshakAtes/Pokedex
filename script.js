@@ -61,7 +61,6 @@ async function renderPokemonCard(pokeName){
     let responsePokemonSpecies = await pokemonSpecies.json();
     let pokeId = idFormater(responsePokemonData['id']);
     console.log(responsePokemonSpecies);
-    console.log(responsePokemonSpecies['genera']['7']['genus']);
 
     document.getElementById('overlay').style.display = 'unset';
     document.getElementById('renderPokemonCards').style.display = 'flex';
@@ -109,7 +108,7 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button onclick="about(${responsePokemonSpecies['base_happiness']}, ${responsePokemonSpecies['capture_rate']}, ${responsePokemonSpecies['pal_park_encounters']['0']['base_score']}, '${responsePokemonSpecies['genera']['7']['genus']}', ${responsePokemonData['base_experience']})" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">About</button>
                     <button onclick="baseStats(${responsePokemonData['stats']['0']['base_stat']}, ${responsePokemonData['stats']['1']['base_stat']}, ${responsePokemonData['stats']['2']['base_stat']}, ${responsePokemonData['stats']['3']['base_stat']}, ${responsePokemonData['stats']['4']['base_stat']}, ${responsePokemonData['stats']['5']['base_stat']})" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Base Stats</button>
-                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Evolution</button>
+                    <button onclick="evolution('${responsePokemonSpecies['evolution_chain']['url']}')" class="nav-link" id="nav-evolution-tab" data-bs-toggle="tab" data-bs-target="#nav-evolution" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Evolution</button>
                     <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false">Moves</button>
                 </div>
             </nav>
@@ -137,11 +136,49 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+                <div class="tab-pane fade" id="nav-evolution" role="tabpanel" aria-labelledby="nav-evolution-tab" tabindex="0"></div>
                 <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0"></div>
             </div>
         </div>
         
+    `;
+}
+
+
+async function evolution(chainUrl){
+    
+    let responseEvolution = await fetch(chainUrl);
+    let responsePokemonChain = await responseEvolution.json();
+    // catch the json from third Pokemon
+    let lastChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}`;
+    let evo = await fetch(lastChainUrl);
+    let lastEvoFromPokemon = await evo.json();
+    // catch the json from First Pokemon
+    let pokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['species']['name']}`;
+    let firstPokemonFetch = await fetch(pokemonChainUrl)
+    let resultFirstPokemon = await firstPokemonFetch.json();
+    // catch the json from second Pokemon
+    let secondpokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}`;
+    let secondPokemonFetch = await fetch(secondpokemonChainUrl)
+    let resultSecondPokemon = await secondPokemonFetch.json();
+
+    // console.log(evoFromPokemon);
+    console.log(lastEvoFromPokemon);
+    console.log(responsePokemonChain);
+    document.getElementById('nav-evolution').innerHTML = '';
+    document.getElementById('nav-evolution').innerHTML = `
+        <div class="evoStyle">
+            <span class="white">${responsePokemonChain['chain']['species']['name']}</span>
+            <img style="width: 100px; height: auto;" src="${resultFirstPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+        </div>
+        <div class="evoStyle">
+            <span class="white">${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}</span>
+            <img style="width: 100px; height: auto;" src="${resultSecondPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+        </div>
+        <div class="evoStyle">
+            <span class="white">${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}</span>
+            <img style="width: 100px; height: auto;" src="${lastEvoFromPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+        </div>
     `;
 }
 
