@@ -187,6 +187,10 @@ body {
     font-size: 20px;
 }
 
+.pokeInfoStyle {
+    margin-bottom: 6px;
+}
+
 
 /* PROPERTIES */
 .nav-link {
@@ -293,6 +297,26 @@ body {
     .tab-content {
         width: 70%;
     }
+
+    .img-fluid {
+        height: 240px;
+    }
+
+    .cardStyle {
+        height: 270px;
+    }
+
+    .cardStyle {
+        padding-top: 0px;
+    }
+
+    .cardText {
+        padding-top: 6px;
+    }
+
+    .card-header {
+        width: 130%;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -302,5 +326,9 @@ body {
 
     .nav {
         --bs-nav-link-padding-x: 0.3rem;
+    }
+
+    .card-header {
+        width: 110%;
     }
 }

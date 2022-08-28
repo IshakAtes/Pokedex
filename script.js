@@ -90,7 +90,7 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
         <div class="allCenter">
             <h1 class="pokemonCardName">${responsePokemonSpecies['name']}</h1>
         </div>
-        <div class="allCenter">
+        <div class="pokeInfoStyle allCenter">
             <div class="pokeType">
                 <span class="cardSpanStyle mb-2">${responsePokemonData['types'][0]['type']['name']}</span>
                 <span class="cardText">${responsePokemonData['weight'] + ' lbs'}</span>
