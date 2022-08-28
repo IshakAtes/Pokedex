@@ -136,7 +136,7 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
-                <div class="tab-pane fade" id="nav-evolution" role="tabpanel" aria-labelledby="nav-evolution-tab" tabindex="0"></div>
+                <div class="tab-pane fade allCenter" id="nav-evolution" role="tabpanel" aria-labelledby="nav-evolution-tab" tabindex="0"></div>
                 <div class="tab-pane fade" id="nav-moves" role="tabpanel" aria-labelledby="nav-moves-tab" tabindex="0"></div>
             </div>
         </div>
