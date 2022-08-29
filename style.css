@@ -259,8 +259,21 @@ body {
 }
 
 
-/* MEDIA-QUERIES */
+/* MOVES-STYLE */
+.movesStyle {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
+.overflow-auto {
+    overflow: scroll!important;
+}
+
+
+
+/* MEDIA-QUERIES */
 @media only screen and (max-width: 800px) {
     #pokemonCardContainer {
         height: 100%;
