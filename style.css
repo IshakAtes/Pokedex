@@ -265,10 +265,12 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
+    overflow: hidden !important;
+    height: 240px;
 }
 
 .overflow-auto {
-    overflow: scroll!important;
+    overflow-y: scroll!important;
 }
 
 

@@ -27,9 +27,9 @@ async function getPokemonDatas(responseAsJson){
 
         renderPokemon(responsePokemonSpecies, element, responsePokemonData, pokeId);
     }
-    // if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
-    //     loadNextPokemons();
-    // }
+    if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
+        loadNextPokemons();
+    }
 }
 
 
@@ -159,7 +159,7 @@ async function moves(pokemonName){
     document.getElementById('moveId').innerHTML = '';
     for (let i = 0; i < pokemonInfos['moves'].length; i++) {
         const element = pokemonInfos['moves'][i];
-        document.getElementById('moveId').innerHTML += `<span class="white">${element['move']['name']}</span>`;
+        document.getElementById('moveId').innerHTML += `<span class="white allCenter"><img style="width: 14px; height: auto; margin-right: 8px;" src="img/star.png" alt="star"> ${element['move']['name']}</span>`;
     }
 }
 
@@ -289,10 +289,10 @@ function idFormater(responseId){
 }
 
 
-// async function loadNextPokemons(){
-//     let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
-//     let response = await fetch(nextUrl);
-//     let responseNextPokemonJson = await response.json();
-//     pokeCounter = pokeCounter + 20;
-//     getPokemonDatas(responseNextPokemonJson);
-// }
+async function loadNextPokemons(){
+    let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
+    let response = await fetch(nextUrl);
+    let responseNextPokemonJson = await response.json();
+    pokeCounter = pokeCounter + 20;
+    getPokemonDatas(responseNextPokemonJson);
+}
