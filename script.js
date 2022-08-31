@@ -27,9 +27,9 @@ async function getPokemonDatas(responseAsJson){
 
         renderPokemon(responsePokemonSpecies, element, responsePokemonData, pokeId);
     }
-    if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
-        loadNextPokemons();
-    }
+    // if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
+    //     loadNextPokemons();
+    // }
 }
 
 
@@ -56,11 +56,9 @@ async function renderPokemonCard(pokeName){
     let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
     let responsePokemon = await fetch(url);
     let responsePokemonData = await responsePokemon.json();
-    console.log(responsePokemonData);
     let pokemonSpecies = await fetch(responsePokemonData['species']['url'])
     let responsePokemonSpecies = await pokemonSpecies.json();
     let pokeId = idFormater(responsePokemonData['id']);
-    console.log(responsePokemonSpecies);
 
     document.getElementById('body').style.overflow = 'hidden';
     document.getElementById('overlay').style.display = 'unset';
@@ -150,20 +148,6 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
 }
 
 
-async function moves(pokemonName){
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-    let urlPokemon = await fetch(url);
-    let pokemonInfos = await urlPokemon.json();
-    console.log(pokemonInfos);
-    document.getElementById('nav-evolution').innerHTML = ''; //evolution container exist but hide, that's why I must clear the nav-evolution Container here.
-    document.getElementById('moveId').innerHTML = '';
-    for (let i = 0; i < pokemonInfos['moves'].length; i++) {
-        const element = pokemonInfos['moves'][i];
-        document.getElementById('moveId').innerHTML += `<span class="white allCenter"><img style="width: 14px; height: auto; margin-right: 8px;" src="img/star.png" alt="star"> ${element['move']['name']}</span>`;
-    }
-}
-
-
 function about(happiness, capture, score, gen, exp){
     document.getElementById('nav-home').innerHTML = '';
     document.getElementById('nav-home').innerHTML = `
@@ -235,38 +219,68 @@ function baseStats(hpData, atkData, defData, spAtkData, spDefData, speedData){
 
 
 async function evolution(chainUrl){
+    // debugger
     let responseEvolution = await fetch(chainUrl);
     let responsePokemonChain = await responseEvolution.json();
-    // catch the json from third Pokemon
-    let lastChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}`;
-    let evo = await fetch(lastChainUrl);
-    let lastEvoFromPokemon = await evo.json();
-
+    console.log(responsePokemonChain);
     // catch the json from First Pokemon
     let pokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['species']['name']}`;
     let firstPokemonFetch = await fetch(pokemonChainUrl)
     let resultFirstPokemon = await firstPokemonFetch.json();
-    
+    console.log(resultFirstPokemon);
     // catch the json from second Pokemon
     let secondpokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}`;
     let secondPokemonFetch = await fetch(secondpokemonChainUrl)
     let resultSecondPokemon = await secondPokemonFetch.json();
+    console.log(resultSecondPokemon);
 
-    document.getElementById('nav-evolution').innerHTML = '';
-    document.getElementById('nav-evolution').innerHTML = `
-        <div class="evoStyle cp" onclick="renderPokemonCard('${responsePokemonChain['chain']['species']['name']}')">
-            <span class="white evotext">${responsePokemonChain['chain']['species']['name']}</span>
-            <img style="width: 100px; height: auto;" src="${resultFirstPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
-        </div>
-        <div class="evoStyle cp" onclick="renderPokemonCard('${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}')">
-            <span class="white evotext">${responsePokemonChain['chain']['evolves_to']['0']['species']['name']}</span>
-            <img style="width: 100px; height: auto;" src="${resultSecondPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
-        </div>
-        <div class="evoStyle cp" onclick="renderPokemonCard('${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}')">
-            <span class="white evotext">${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}</span>
-            <img style="width: 100px; height: auto;" src="${lastEvoFromPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
-        </div>
-    `;
+    document.getElementById('nav-evolution').innerHTML = `<div id="firstPokemon"></div><div id="secondPokemon"></div><div id="thirdPokemon"></div>`;
+    if (resulFirstPokemon => true) {
+        document.getElementById('firstPokemon').innerHTML = `
+            <div class="evoStyle cp" onclick="renderPokemonCard('${resultFirstPokemon['species']['name']}')">
+                <span class="white evotext">${resultFirstPokemon['species']['name']}</span>
+                <img style="width: 100px; height: auto;" src="${resultFirstPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+            </div>
+        `;
+    }
+    if (resultSecondPokemon => true) {
+        document.getElementById('secondPokemon').innerHTML = `
+            <div class="evoStyle cp" onclick="renderPokemonCard('${resultSecondPokemon['species']['name']}')">
+                <span class="white evotext">${resultSecondPokemon['species']['name']}</span>
+                <img style="width: 100px; height: auto;" src="${resultSecondPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+            </div>   
+        `;
+    }
+    
+    // catch the json from third Pokemon
+    if (`${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}` && 1) {
+        let lastChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['name']}`;
+        let evo = await fetch(lastChainUrl);
+        let lastEvoFromPokemon = await evo.json();
+        console.log(lastEvoFromPokemon);
+
+        if (lastEvoFromPokemon => true) {
+            document.getElementById('thirdPokemon').innerHTML = `
+                <div class="evoStyle cp" onclick="renderPokemonCard('${lastEvoFromPokemon['species']['name']}')">
+                    <span class="white evotext">${lastEvoFromPokemon['species']['name']}</span>
+                    <img style="width: 100px; height: auto;" src="${lastEvoFromPokemon['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+                </div>
+            `;
+        }
+    }
+}
+
+
+async function moves(pokemonName){
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+    let urlPokemon = await fetch(url);
+    let pokemonInfos = await urlPokemon.json();
+    document.getElementById('nav-evolution').innerHTML = ''; //evolution container exist but hide, that's why I must clear the nav-evolution Container here.
+    document.getElementById('moveId').innerHTML = '';
+    for (let i = 0; i < pokemonInfos['moves'].length; i++) {
+        const element = pokemonInfos['moves'][i];
+        document.getElementById('moveId').innerHTML += `<span class="white allCenter"><img style="width: 14px; height: auto; margin-right: 8px;" src="img/star.png" alt="star"> ${element['move']['name']}</span>`;
+    }
 }
 
 
@@ -289,10 +303,10 @@ function idFormater(responseId){
 }
 
 
-async function loadNextPokemons(){
-    let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
-    let response = await fetch(nextUrl);
-    let responseNextPokemonJson = await response.json();
-    pokeCounter = pokeCounter + 20;
-    getPokemonDatas(responseNextPokemonJson);
-}
+// async function loadNextPokemons(){
+//     let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
+//     let response = await fetch(nextUrl);
+//     let responseNextPokemonJson = await response.json();
+//     pokeCounter = pokeCounter + 20;
+//     getPokemonDatas(responseNextPokemonJson);
+// }
