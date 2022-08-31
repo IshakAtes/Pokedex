@@ -284,11 +284,49 @@ body {
 
 
 /* MEDIA-QUERIES */
-@media only screen and (max-width: 800px) {
+@media only screen and (min-width: 1200px) {
+    .cardStyle {
+        background-image: url("img/poke1gif.gif");
+        background-position: 50% 50%;
+        background-size: 100%;
+        object-fit: cover;
+    }
+
+    /* #pokemonCardContainer {
+        height: 100%;
+        width: 100%;
+    } */
+
+    .cardStyle {
+        width: 800px;
+        height: 400px;
+    }
+
+    nav {
+        width: 100%;
+    }
+    
+    .nav-tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-fluid {
+        height: 350px;
+        object-fit: contain;
+    }
+
+    .tab-content {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
     .cardStyle {
         background-image: url("img/poke1gif.gif");
         background-position: 30% 50%;
-        background-size: 150%;
+        background-size: 100%;
     }
 
     #pokemonCardContainer {
@@ -322,6 +360,15 @@ body {
 }
 
 
+@media only screen and (max-width: 720px) {
+    .cardStyle {
+        background-image: url("img/poke1gif.gif");
+        background-position: 30% 50%;
+        background-size: 120%;
+    }
+}
+
+
 @media only screen and (max-width: 640px) {
     .tab-content {
         width: 70%;
@@ -333,9 +380,6 @@ body {
 
     .cardStyle {
         height: 270px;
-    }
-
-    .cardStyle {
         padding-top: 0px;
     }
 
@@ -349,6 +393,12 @@ body {
 }
 
 @media only screen and (max-width: 480px) {
+    .cardStyle {
+        background-image: url("img/poke1gif.gif");
+        background-position: 30% 50%;
+        background-size: 150%;
+    }
+
     .tab-content {
         width: 100%;
     }
