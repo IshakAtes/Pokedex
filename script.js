@@ -70,8 +70,9 @@ async function renderPokemonCard(pokeName){
 
 
 function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpecies){
+    //style="background-color: ${responsePokemonSpecies['color']['name']};"
     return `
-        <div id="pokeCard" class="allCenter cardStyle" style="background-color: ${responsePokemonSpecies['color']['name']};">
+        <div id="pokeCard" class="allCenter cardStyle">
             <div class="containerCardHeader">
                 <div class="card-header allCenter">
                     <span onclick="backToMain()" class="allCenter cp textShadow">

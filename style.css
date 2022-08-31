@@ -26,13 +26,18 @@ body {
     cursor: pointer;
 }
 
-
 /* POKEMON MAIN CONTAINER */
-/* .mainContainer {
-    background-image: url("img//pokemon-gc071927e2_1920.jpg");
+/* .bgImg {
+    position: absolute;
+    z-index: -1;
+}
+
+.bgImg img {
+    position: fixed;
+    width: 100vw;
     height: 100vh;
     object-fit: cover;
-    background-position: center;
+    background-position: 50% 50%;
 } */
 
 .pokemonCave {
@@ -128,6 +133,9 @@ body {
 }
 
 .cardStyle {
+    background-image: url("img/pokemon-gc071927e2_1920.jpg");
+    background-position: 50% 50%;
+    background-size: 200%;
     flex-direction: column;
     width: 400px;
     height: auto;
@@ -277,6 +285,12 @@ body {
 
 /* MEDIA-QUERIES */
 @media only screen and (max-width: 800px) {
+    .cardStyle {
+        background-image: url("img/poke1gif.gif");
+        background-position: 30% 50%;
+        background-size: 150%;
+    }
+
     #pokemonCardContainer {
         height: 100%;
         width: 100%;
