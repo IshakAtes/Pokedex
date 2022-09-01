@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon.ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico/favicon-16x16.png">
+    <link rel="manifest" href="favicon.ico/site.webmanifest">
+    <link rel="mask-icon" href="favicon.ico/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#191919">
+    <meta name="theme-color" content="#ffffff">
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
     <title>Pokedex</title>
@@ -13,7 +20,10 @@
 <body id="body" onload="init()">
     <div class="mainContainer">
         <!-- <div class="bgImg"><img src="img/pokemon-gc071927e2_1920.jpg"></div> -->
-        <h1>Pokedex</h1>
+        <div class="homeNav">
+            <h1 style="color: #ffc107; margin-left: 14px; margin-right: 14px;">Pokedex</h1>
+            <input type="text">
+        </div>
         <div id="renderPokemonContainer" class="renderedPokemonContainer">
         </div>
 

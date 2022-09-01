@@ -40,6 +40,22 @@ body {
     background-position: 50% 50%;
 } */
 
+/* NAVIGATION */
+.homeNav {
+    box-shadow: 1px 3px 15px 10px rgba(14, 34, 221, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.homeNav input{
+    width: 300px;
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+
 .pokemonCave {
     color: #fff;
     width: 360px;
