@@ -25,9 +25,24 @@ async function getPokemonDatas(responseAsJson){
 
         renderPokemon(responsePokemonSpecies, element, responsePokemonData, pokeId);
     }
-    if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
-        loadNextPokemons();
-    }
+  
+    window.onscroll = function(ev) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            setTimeout(loadNextPokemons, 500);
+        }
+    };
+    // if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
+    //     loadNextPokemons();
+    // }
+}
+
+
+async function loadNextPokemons(){
+    let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
+    let response = await fetch(nextUrl);
+    let responseNextPokemonJson = await response.json();
+    pokeCounter = pokeCounter + 20;
+    getPokemonDatas(responseNextPokemonJson);
 }
 
 
@@ -316,10 +331,3 @@ function idFormater(responseId){
 }
 
 
-async function loadNextPokemons(){
-    let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
-    let response = await fetch(nextUrl);
-    let responseNextPokemonJson = await response.json();
-    pokeCounter = pokeCounter + 20;
-    getPokemonDatas(responseNextPokemonJson);
-}

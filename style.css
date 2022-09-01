@@ -301,6 +301,10 @@ body {
 
 /* MEDIA-QUERIES */
 @media only screen and (min-width: 1200px) {
+    .card-header {
+        width: 150%;
+    }
+    
     .cardStyle {
         background-image: url("img/poke1gif.gif");
         background-position: 50% 50%;
@@ -339,6 +343,10 @@ body {
 }
 
 @media only screen and (max-width: 1200px) {
+    .card-header {
+        width: 150%;
+    }
+
     .cardStyle {
         background-image: url("img/poke1gif.gif");
         background-position: 30% 50%;
