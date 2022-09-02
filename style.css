@@ -66,6 +66,12 @@ body {
     justify-content: space-between;
     border-radius: 14px;
     overflow: hidden;
+    opacity: 0.8;
+}
+
+.pokemonCave:hover {
+    /* box-shadow: 1px 3px 15px 8px rgba(14, 35, 221, 0.596); */
+    opacity: 1.0;
 }
 
 .pokemonImgContainer {

@@ -53,7 +53,7 @@ function renderPokemon(responsePokemonSpecies, element, responsePokemonData, pok
 
 function renderAllPokemonsHTML(responsePokemonSpecies, element, responsePokemonData, pokeId){
     return `
-        <div onclick="renderPokemonCard('${element['name']}')" class="pokemonCave allCenter" style="background-color: ${responsePokemonSpecies['color']['name']};">
+        <div onclick="renderPokemonCard('${element['name']}')" class="pokemonCave allCenter" style="background-color: ${responsePokemonSpecies['color']['name']};" onmouseover="this.style.boxShadow='1px 3px 15px 2px ${responsePokemonSpecies['color']['name']}';" onmouseout="this.style.boxShadow='';">
             <div class="pokemonInfoContainer">
                 <h3 class="textShadow">${element['name']}</h3>
                 <span class="spanStyle mb-2 textShadow">${responsePokemonData['types'][0]['type']['name']}</span>
