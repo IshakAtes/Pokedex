@@ -92,7 +92,7 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
             <div class="containerCardHeader">
                 <div class="card-header allCenter">
                     <span onclick="backToMain()" class="allCenter cp textShadow">
-                        <img src="img/pfeilWhite.png" alt="">
+                        <img src="img/zuruck (1).png" alt="">
                         <span style="font-size: 20px;">Pokedex</span>
                     </span>
                     <span class="textShadow" style="text-align: right; font-size: 18px;">
