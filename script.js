@@ -11,6 +11,7 @@ async function responseApi(){
     let responseAsJson = await response.json();
     console.log(responseAsJson)
     getPokemonDatas(responseAsJson)
+    document.getElementById('renderPokemonContainer').innerHTML = '';
 }
 
 
@@ -331,3 +332,43 @@ function idFormater(responseId){
 }
 
 
+async function filterPokemon(){
+    let search = document.getElementById('searchField').value;
+    search = search.toLowerCase();
+    try {
+        let url = `https://pokeapi.co/api/v2/pokemon/${search}`;
+        let responsePokemon = await fetch(url);
+        let responsePokemonData = await responsePokemon.json();
+        let pokemonSpecies = await fetch(responsePokemonData['species']['url'])
+        let responsePokemonSpecies = await pokemonSpecies.json();
+        let pokeId = idFormater(responsePokemonData['id']);
+
+        document.getElementById('renderPokemonContainer').innerHTML = '';
+        document.getElementById('renderPokemonContainer').innerHTML = generateFilteredPokemonsHTML(responsePokemonData, responsePokemonSpecies, pokeId);
+    } catch (error) {
+        document.getElementById('renderPokemonContainer').innerHTML = `
+            <h1 class="notFound">Pokemon not found</h1>
+        `;
+    }
+    if (search == 0) {
+        document.getElementById('renderPokemonContainer').innerHTML = '';
+        responseApi();
+    }
+}
+
+function generateFilteredPokemonsHTML(responsePokemonData, responsePokemonSpecies, pokeId){
+    return `
+        <div onclick="renderPokemonCard('${responsePokemonData['name']}')" class="pokemonCave allCenter" style="background-color: ${responsePokemonSpecies['color']['name']};" onmouseover="this.style.boxShadow='1px 3px 15px 2px ${responsePokemonSpecies['color']['name']}';" onmouseout="this.style.boxShadow='';">
+            <div class="pokemonInfoContainer">
+                <h3 class="textShadow">${responsePokemonData['name']}</h3>
+                <span class="spanStyle mb-2 textShadow">${responsePokemonData['types'][0]['type']['name']}</span>
+                <span class="spanStyle mb-2 textShadow">${responsePokemonSpecies['habitat']['name']}</span>
+            </div>
+            <div class="pokemonImgContainer allCenter">
+                <div class="textShadow" style="text-align: right; margin-right: -75px; padding-bottom: 10px; opacity: 0.9; font-size: 18px;">${pokeId}</div>
+                <img class="pokemonsImg" src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+                <img class="pokeballImg" src="img/catching_pokemon_black_24dp.svg" alt="">     
+            </div>
+        </div>
+    `;
+}

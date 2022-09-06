@@ -26,35 +26,27 @@ body {
     cursor: pointer;
 }
 
-/* POKEMON MAIN CONTAINER */
-/* .bgImg {
-    position: absolute;
-    z-index: -1;
-}
-
-.bgImg img {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    background-position: 50% 50%;
-} */
 
 /* NAVIGATION */
+#searchField:hover {
+    box-shadow: 1px 1px 20px 8px rgb(160, 156, 156);
+}
 .homeNav {
-    box-shadow: 1px 3px 15px 10px rgba(14, 34, 221, 0.65);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 4px 60px 4px 60px;
 }
 
 .homeNav input{
-    width: 300px;
-    margin-left: 14px;
+    width: 500px;
+    height: 30px;
+    margin-left: 60px;
     margin-right: 14px;
+    padding-left: 20px;
+    border-radius: 10px;
+    border: none;
 }
-
 
 .pokemonCave {
     color: #fff;
@@ -118,6 +110,12 @@ body {
     align-items: flex-start;
     flex-direction: column;
     margin-left: 20px;
+}
+
+.notFound {
+    color:rgb(255, 255, 255);
+    position: absolute;
+    top: 300px;
 }
 
 
@@ -318,10 +316,6 @@ body {
         object-fit: cover;
     }
 
-    /* #pokemonCardContainer {
-        height: 100%;
-        width: 100%;
-    } */
 
     .cardStyle {
         width: 800px;

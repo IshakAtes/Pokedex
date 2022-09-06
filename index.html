@@ -19,10 +19,9 @@
 </head>
 <body id="body" onload="init()">
     <div class="mainContainer">
-        <!-- <div class="bgImg"><img src="img/pokemon-gc071927e2_1920.jpg"></div> -->
         <div class="homeNav">
-            <h1 style="color: #ffc107; margin-left: 14px; margin-right: 14px;">Pokedex</h1>
-            <input type="text">
+            <img onclick="responseApi()" class="cp" style="width: 300px; width: 240px;" src="img/pngegg.png" alt="">
+            <input id="searchField" type="text" placeholder="Search Pokemon" onkeyup="filterPokemon()">
         </div>
         <div id="renderPokemonContainer" class="renderedPokemonContainer">
         </div>
