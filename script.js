@@ -102,6 +102,10 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
                 </div>
                 
                 <img src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
+                <div class="pokemonSwitcherContainer">
+                    <img onclick="backwardPokemon('${pokeId}')" class="pokeSwitcherArrow cp" src="img/zuruck.png" alt="">
+                    <img onclick="forwardPokemon('${pokeId}')" class="pokeSwitcherArrow cp" style="transform: rotate(180deg);" src="img/zuruck.png" alt="">
+                </div>
             </div>
         </div>
         <div class="allCenter">
@@ -271,7 +275,6 @@ async function evolution(chainUrl){
     }
 }
 
-
 function generateFirstPokemonHTML(resultFirstPokemon){
     return `
         <div class="evoStyle cp" onclick="renderPokemonCard('${resultFirstPokemon['species']['name']}')">
@@ -371,4 +374,20 @@ function generateFilteredPokemonsHTML(responsePokemonData, responsePokemonSpecie
             </div>
         </div>
     `;
+}
+
+
+/**
+ * Pokemon Forward and Backward function
+ */
+function backwardPokemon(pokeId){
+    let myNumber = parseInt(pokeId.replace(/^[^0-9]+/, ''), 10);
+    let pokeIdReverse = myNumber - 1;
+    renderPokemonCard(pokeIdReverse)
+}
+
+function forwardPokemon(pokeId){
+    let myNumber = parseInt(pokeId.replace(/^[^0-9]+/, ''), 10);
+    let pokeIdReverse = myNumber + 1;
+    renderPokemonCard(pokeIdReverse)
 }

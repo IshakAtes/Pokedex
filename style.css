@@ -138,6 +138,18 @@ body {
 
 
 /* POKEMON CARDSstyling */
+.pokemonSwitcherContainer {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+}
+
+.pokeSwitcherArrow {
+    opacity: 0.5;
+}
+
 .renderPokemonCardStyle {
     position: fixed;
     top: 0px;
@@ -166,6 +178,7 @@ body {
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     padding-top: 30px;
+    position: relative;
 }
 
 .containerCardHeader{
@@ -421,7 +434,7 @@ body {
 
     .cardStyle {
         height: 270px;
-        padding-top: 0px;
+        padding-top: 20px;
     }
 
     .cardText {
@@ -482,5 +495,4 @@ body {
     .pokemonCave {
         margin-right: unset;
     }
-
 }
