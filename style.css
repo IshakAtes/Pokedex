@@ -28,6 +28,10 @@ body {
 
 
 /* NAVIGATION */
+.navImg {
+    width: 160px;
+}
+
 #searchField:hover {
     box-shadow: 1px 1px 20px 8px rgb(160, 156, 156);
 }
@@ -394,6 +398,19 @@ body {
 
 
 @media only screen and (max-width: 640px) {
+    .homeNav {
+        margin: 2px 2px 2px 2px;
+    }
+
+    .homeNav input {
+        height: 30px;
+        margin-left: 20px;
+        margin-right: 2px;
+        padding-left: 20px;
+        border-radius: 10px;
+        border: none;
+    }
+
     .tab-content {
         width: 70%;
     }
@@ -417,6 +434,14 @@ body {
 }
 
 @media only screen and (max-width: 480px) {
+    .homeNav {
+        margin: 8px 2px 8px 2px;
+    }
+    
+    .navImg {
+        width: 120px;
+    }
+
     .cardStyle {
         background-image: url("img/poke1gif.gif");
         background-position: 30% 50%;
@@ -434,4 +459,28 @@ body {
     .card-header {
         width: 110%;
     }
+}
+
+
+@media only screen and (max-width: 370px) {
+    .homeNav {
+        flex-direction: column;
+    }
+
+    .navImg {
+        width: 100px;
+        margin-bottom: 4px;
+    }
+
+    .homeNav input {
+        height: 30px;
+        margin-left: 12px;
+        margin-right: 12px;
+        width: 94%;
+    }
+
+    .pokemonCave {
+        margin-right: unset;
+    }
+
 }
