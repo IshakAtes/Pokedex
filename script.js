@@ -378,7 +378,7 @@ function generateFilteredPokemonsHTML(responsePokemonData, responsePokemonSpecie
 
 
 /**
- * Pokemon Forward and Backward function
+ * Pokemon Forward and Backward function in Pokemon Card
  */
 function backwardPokemon(pokeId){
     let myNumber = parseInt(pokeId.replace(/^[^0-9]+/, ''), 10);
