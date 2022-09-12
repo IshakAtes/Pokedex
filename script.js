@@ -1,4 +1,5 @@
 let pokeCounter = 20;
+let loadingNext = false;
 
 function init(){
     responseApi();
@@ -26,15 +27,18 @@ async function getPokemonDatas(responseAsJson){
 
         renderPokemon(responsePokemonSpecies, element, responsePokemonData, pokeId);
     }
-    window.onscroll = function(ev) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            setTimeout(loadNextPokemons, 500);
-        }
-    };
     // if (responseAsJson['next'] == `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`) {
     //     loadNextPokemons();
     // }
 }
+
+
+window.onscroll = function(ev) {
+    if (!loadingNext && (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500)) {
+        loadingNext = true;
+        loadNextPokemons();
+    }
+};
 
 
 async function loadNextPokemons(){
@@ -42,7 +46,8 @@ async function loadNextPokemons(){
     let response = await fetch(nextUrl);
     let responseNextPokemonJson = await response.json();
     pokeCounter = pokeCounter + 20;
-    getPokemonDatas(responseNextPokemonJson);
+    await getPokemonDatas(responseNextPokemonJson);
+    loadingNext = false;
 }
 
 
