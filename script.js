@@ -13,6 +13,7 @@ async function responseApi(){
     console.log(responseAsJson)
     getPokemonDatas(responseAsJson)
     document.getElementById('renderPokemonContainer').innerHTML = '';
+    document.getElementById('searchField').value = '';
 }
 
 
@@ -33,6 +34,9 @@ async function getPokemonDatas(responseAsJson){
 }
 
 
+/**
+ * ON-SCROLL
+ */
 window.onscroll = function(ev) {
     if (!loadingNext && (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500)) {
         loadingNext = true;
@@ -41,6 +45,9 @@ window.onscroll = function(ev) {
 };
 
 
+/**
+ * LOAD NEXT POKEMONS
+ */
 async function loadNextPokemons(){
     let nextUrl = `https://pokeapi.co/api/v2/pokemon?offset=${pokeCounter}&limit=20`;
     let response = await fetch(nextUrl);
@@ -51,6 +58,9 @@ async function loadNextPokemons(){
 }
 
 
+/**
+ * RENDER POKEMON
+ */
 function renderPokemon(responsePokemonSpecies, element, responsePokemonData, pokeId){
     let renderContainer = document.getElementById('renderPokemonContainer');
     renderContainer.innerHTML += renderAllPokemonsHTML(responsePokemonSpecies, element, responsePokemonData, pokeId);
@@ -155,6 +165,7 @@ function idFormater(responseId){
 
 
 async function filterPokemon(){
+    console.log('filtering');
     let search = document.getElementById('searchField').value;
     search = search.toLowerCase();
     try {
