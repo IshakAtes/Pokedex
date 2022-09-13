@@ -10,8 +10,7 @@ async function responseApi(){
     let url = 'https://pokeapi.co/api/v2/pokemon';
     let response = await fetch(url);
     let responseAsJson = await response.json();
-    console.log(responseAsJson)
-    getPokemonDatas(responseAsJson)
+    getPokemonDatas(responseAsJson);
     document.getElementById('renderPokemonContainer').innerHTML = '';
     document.getElementById('searchField').value = '';
 }
@@ -165,7 +164,6 @@ function idFormater(responseId){
 
 
 async function filterPokemon(){
-    console.log('filtering');
     let search = document.getElementById('searchField').value;
     search = search.toLowerCase();
     try {

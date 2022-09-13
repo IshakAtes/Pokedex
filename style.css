@@ -28,6 +28,11 @@ body {
 
 
 /* NAVIGATION */
+.navPokeImg{
+    width: 46px;
+    height: auto;
+}
+
 .navImg {
     width: 160px;
 }
@@ -45,7 +50,7 @@ body {
 .homeNav input{
     width: 500px;
     height: 30px;
-    margin-left: 60px;
+    margin-left: 14px;
     margin-right: 14px;
     padding-left: 20px;
     border-radius: 10px;
@@ -323,24 +328,25 @@ body {
 /* width */
 ::-webkit-scrollbar {
     width: 12px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey; 
     border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: rgb(83, 76, 76); 
     border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #2b2424; 
-  }
+}
+
 
 
 /* MEDIA-QUERIES */
@@ -434,13 +440,17 @@ body {
 
 
 @media only screen and (max-width: 640px) {
+    .navPokeImg {
+        display: none;
+    }
+
     .homeNav {
         margin: 2px 2px 2px 2px;
     }
 
     .homeNav input {
         height: 30px;
-        margin-left: 20px;
+        margin-left: 2px;
         margin-right: 2px;
         padding-left: 20px;
         border-radius: 10px;
@@ -495,6 +505,10 @@ body {
     .card-header {
         width: 110%;
     }
+    
+    .pokemonCave {
+        margin-right: unset;
+    }
 }
 
 
@@ -513,9 +527,5 @@ body {
         margin-left: 12px;
         margin-right: 12px;
         width: 94%;
-    }
-
-    .pokemonCave {
-        margin-right: unset;
     }
 }
