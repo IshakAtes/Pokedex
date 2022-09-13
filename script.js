@@ -21,7 +21,7 @@ async function getPokemonDatas(responseAsJson){
         const element = responseAsJson['results'][i];
         let pokemonData = await fetch(element['url']);
         let responsePokemonData = await pokemonData.json();
-        let pokemonSpecies = await fetch(responsePokemonData['species']['url'])
+        let pokemonSpecies = await fetch(responsePokemonData['species']['url']);
         let responsePokemonSpecies = await pokemonSpecies.json();
         let pokeId = idFormater(responsePokemonSpecies['id']);
 
@@ -73,16 +73,16 @@ async function renderPokemonCard(pokeName){
     let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
     let responsePokemon = await fetch(url);
     let responsePokemonData = await responsePokemon.json();
-    let pokemonSpecies = await fetch(responsePokemonData['species']['url'])
+    let pokemonSpecies = await fetch(responsePokemonData['species']['url']);
     let responsePokemonSpecies = await pokemonSpecies.json();
     let pokeId = idFormater(responsePokemonData['id']);
 
     document.getElementById('body').style.overflow = 'hidden';
     document.getElementById('overlay').style.display = 'unset';
     document.getElementById('renderPokemonCards').style.display = 'flex';
-    let renderCard = document.getElementById('pokemonCardContainer')
+    let renderCard = document.getElementById('pokemonCardContainer');
     renderCard.innerHTML = '';
-    renderCard.innerHTML = generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpecies)
+    renderCard.innerHTML = generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpecies);
 }
 
 
@@ -104,7 +104,7 @@ async function evolution(chainUrl){
         let responsePokemonChain = await responseEvolution.json();
         // catch the json from First Pokemon
         let pokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['species']['name']}`;
-        let firstPokemonFetch = await fetch(pokemonChainUrl)
+        let firstPokemonFetch = await fetch(pokemonChainUrl);
         let resultFirstPokemon = await firstPokemonFetch.json();
 
         document.getElementById('nav-evolution').innerHTML = generateEvolutionContainerHTML();
@@ -113,7 +113,7 @@ async function evolution(chainUrl){
         }
         // catch the json from second Pokemon
         let secondpokemonChainUrl = `https://pokeapi.co/api/v2/pokemon/${responsePokemonChain['chain']['evolves_to'][0]['species']['name']}`;
-        let secondPokemonFetch = await fetch(secondpokemonChainUrl)
+        let secondPokemonFetch = await fetch(secondpokemonChainUrl);
         let resultSecondPokemon = await secondPokemonFetch.json();
         if (resultSecondPokemon) {
             document.getElementById('secondPokemon').innerHTML = generateSecondPokemonHTML(resultSecondPokemon);
@@ -175,7 +175,7 @@ async function filterPokemon(){
         let pokeId = idFormater(responsePokemonData['id']);
 
         document.getElementById('renderPokemonContainer').innerHTML = '';
-        document.getElementById('renderPokemonContainer').innerHTML = generateFilteredPokemonsHTML(responsePokemonData, responsePokemonSpecies, pokeId);
+        document.getElementById('renderPokemonContainer').innerHTML = await generateFilteredPokemonsHTML(responsePokemonData, responsePokemonSpecies, pokeId);
     } catch (error) {
         document.getElementById('renderPokemonContainer').innerHTML = generateNotSearchResultHTML();
     }
@@ -192,11 +192,19 @@ async function filterPokemon(){
 function backwardPokemon(pokeId){
     let myNumber = parseInt(pokeId.replace(/^[^0-9]+/, ''), 10);
     let pokeIdReverse = myNumber - 1;
-    renderPokemonCard(pokeIdReverse)
+    if(myNumber > 1) {
+        renderPokemonCard(pokeIdReverse)
+    } else {
+        document.getElementById('arrowLeft').style.opacity = '0';
+    }
 }
 
 function forwardPokemon(pokeId){
     let myNumber = parseInt(pokeId.replace(/^[^0-9]+/, ''), 10);
     let pokeIdReverse = myNumber + 1;
-    renderPokemonCard(pokeIdReverse)
+    if(myNumber < 386) {
+        renderPokemonCard(pokeIdReverse)
+    } else {
+        document.getElementById('arrowRight').style.opacity = '0';
+    }
 }

@@ -38,8 +38,8 @@ function generatePokemonCardHTML(pokeId, responsePokemonData, responsePokemonSpe
                 
                 <img src="${responsePokemonData['sprites']['other']['home']['front_default']}" class="img-fluid" alt="">
                 <div class="pokemonSwitcherContainer">
-                    <img onclick="backwardPokemon('${pokeId}')" class="pokeSwitcherArrow cp" src="img/zuruck.png" alt="">
-                    <img onclick="forwardPokemon('${pokeId}')" class="pokeSwitcherArrow cp" style="transform: rotate(180deg);" src="img/zuruck.png" alt="">
+                    <img onclick="backwardPokemon('${pokeId}')" id="arrowLeft" class="pokeSwitcherArrow cp" src="img/zuruck.png" alt="">
+                    <img onclick="forwardPokemon('${pokeId}')" id="arrowRight" class="pokeSwitcherArrow cp" style="transform: rotate(180deg);" src="img/zuruck.png" alt="">
                 </div>
             </div>
         </div>

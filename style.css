@@ -459,14 +459,15 @@ body {
 
     .tab-content {
         width: 70%;
+        margin-top: 2px;
     }
 
     .img-fluid {
-        height: 240px;
+        height: 220px;
     }
 
     .cardStyle {
-        height: 270px;
+        height: 240px;
         padding-top: 20px;
     }
 
@@ -476,6 +477,18 @@ body {
 
     .card-header {
         width: 130%;
+    }
+
+    .mb-2 {
+        margin-bottom: 0.1rem!important;
+    }
+
+    .statMargin {
+        margin-top: 4px;
+    }
+
+    h1 {
+        margin-bottom: 0.3rem;
     }
 }
 
