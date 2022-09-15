@@ -196,6 +196,7 @@ function backwardPokemon(pokeId){
         renderPokemonCard(pokeIdReverse)
     } else {
         document.getElementById('arrowLeft').style.opacity = '0';
+        document.getElementById('arrowLeft').classList.remove('cp');
     }
 }
 
@@ -206,5 +207,6 @@ function forwardPokemon(pokeId){
         renderPokemonCard(pokeIdReverse)
     } else {
         document.getElementById('arrowRight').style.opacity = '0';
+        document.getElementById('arrowRight').classList.remove('cp');
     }
 }
