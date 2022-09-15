@@ -231,7 +231,7 @@ function generateThirdPokemonHTML(resultThirdPokemon){
 function generateMovesHTML(element){
     return `
         <span class="white allCenter">
-            <img style="width: 14px; height: auto; margin-right: 8px;" src="img/star.png" alt="star"> ${element['move']['name']}
+            <img style="width: 14px; height: auto; margin-right: 8px;" src="img/star.png" alt="star"> <span>${element['move']['name']}</span>
         </span>
     `;
 }
